@@ -1,0 +1,45 @@
+jsonrpc 
+rpc = remote procedure call
+
+JSON-RPC is a remote procedure call(RPC) protocal endcoded in JSON (Javascript Object Notation).it allows for communtication between a client and a 
+server a network. JSON-RPC enables a client to invoke methods on a server and recieve response, similar to traditional RPC protocols but using JSON for data formating.
+
+
+As a user, You interact with the blockchain for two purposes
+  1. To send a transaction 
+  2. To fetch some details from the blockchain(balance etc)
+
+
+In both of these, the way to interact with the blockchain is using JSON-RPC 
+JSON RPC spec - https://www.jsonrpc.org/specification
+
+There are Other ways to do RPC's like GRPC, TRPC 
+
+An RPC server is not inherently part of the blockchain network itself, nor does it participate in staking or consensus mechanisms
+     You can grab your own RPC server from one of many providers - 
+          1.Quicknode
+          2.Alchemy
+          3.Helius
+          4.Infura
+
+
+
+ETH ----> 
+
+    Wei: 
+       - Defination - Wei is the smallest unit of cryptocurrency in the Etherum network. it's similar to how a cent is to a doller.
+       - Value - ! Ether (ETH) = 10^18 Wei.
+
+    Gwei - 
+        - Defination: A larger unit of Ether commonly used in the context of gas prices.
+        - Conversion: 1 Ether = 10^9 Gwei
+
+
+   Lamports 
+       - in the Solana Blockchain, the smallest unit or currency is called a lamport. Just as wei is to 
+         Ether in Ethereum, lamports are to SOL (the native token of Solana).
+
+       - 1 SOL = 10^9 Lamports   
+
+               
+        
