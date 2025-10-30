@@ -1,0 +1,14 @@
+ETH was one of the first blockchain to introduce the concept of decentralized state/programs.
+These are populrly known as smart contracts on the ETH blockchain.
+
+
+
+
+Accounts on Solana ->
+
+Accounts 
+   On the Solana blockchain, an "account" is a fundamental data structure used to store various types of information.
+   Types of Information -> 
+        1. Data Storage: Accounts on Solana are used to store data required by programs (Smart contracts) or to maintain state.
+        2. Lamports: Accounts hold a balance of Solana's native cryptocurrency, lamports. Lamports are used to pay for transaction fees to rent space that the account occupies on the blockchain.
+        3. Programs: On Solana, programs are special accounts that conatain executable code. These accounts are distinct from regular data accounts in that they are desigend to be executed by the blockchain when triggered by a transaction.
