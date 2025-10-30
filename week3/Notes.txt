@@ -42,4 +42,54 @@ ETH ---->
        - 1 SOL = 10^9 Lamports   
 
                
-        
+  
+
+
+
+  Web-based Crypto Wallet
+
+ 
+            Steps to create Crypto wallet 
+                   
+                      1.npm create vite@latest web-wallet 
+
+                      2.install key libs 
+                      npm install ethers bip39 @ethersproject/hdnode js-sha256
+                      and for solana 
+                      npm install @solana/web3.js bip39 ed25519-hd-key tweetnacl
+
+
+
+                      2. App architecture (high level)
+
+                          Pages / components:
+
+                         Onboarding: Create or Import mnemonic
+
+                          Wallet Dashboard: list accounts, balances
+
+                         Account Detail: transaction history & send
+
+                          Settings: export encrypted backup, network selection
+
+                         Data layer:
+
+                         walletStore (Zustand or Context) to hold encrypted storage, unlocked mnemonic in memory, and derived accounts.
+
+                         Networking:
+
+                         Use provider abstraction that takes RPC URL (Alchemy/Infura): Ethers JsonRpcProvider.
+
+                          Persistence:
+ 
+                         Encrypted storage in localStorage or IndexedDB — never store plaintext mnemonic.
+
+                         3. Mnemonic creation & derivation (Ethereum/EVM)
+
+                          Use bip39 and ethers hd node.
+
+
+
+                      3.
+
+   
