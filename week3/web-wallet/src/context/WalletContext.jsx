@@ -6,9 +6,8 @@ export const WalletContext = createContext();
 
 export const WalletProvider = ({ children }) => {
   const [mnemonic, setMnemonic] = useState("");
-  const [accounts, setAccounts] = useState([]); // ✅ renamed from account → accounts for consistency
+  const [accounts, setAccounts] = useState([]);
 
-  // ✅ Create a brand new wallet (mnemonic + first account)
   const createNewWallet = async () => {
     try {
       const newMnemonic = await createMnemonic();
@@ -20,7 +19,6 @@ export const WalletProvider = ({ children }) => {
     }
   };
 
-  // ✅ Add a new derived account by index
   const addAccount = (index) => {
     try {
       if (!mnemonic) return;
@@ -31,7 +29,6 @@ export const WalletProvider = ({ children }) => {
     }
   };
 
-  // ✅ Fetch and update all balances
   const fetchBalances = async () => {
     try {
       const updated = await Promise.all(
@@ -50,7 +47,7 @@ export const WalletProvider = ({ children }) => {
     <WalletContext.Provider
       value={{
         mnemonic,
-        accounts, // ✅ renamed to match App.jsx
+        accounts,
         createNewWallet,
         addAccount,
         fetchBalances,

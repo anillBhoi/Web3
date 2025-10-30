@@ -1,14 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { WalletProvider } from './context/WalletContext.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Buffer } from "buffer";  // ✅ fix
+window.Buffer = Buffer;           // ✅ make it global
 
-createRoot(document.getElementById('root')).render(
+import "./index.css";
+import App from "./App.jsx";
+import { WalletProvider } from "./context/WalletContext.jsx";
+import { SolanaProvider } from "./context/SolanaContext.jsx";
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <WalletProvider>
-      <App />
+      <SolanaProvider>
+        <App />
+      </SolanaProvider>
     </WalletProvider>
-    
-  </StrictMode>,
-)
+  </StrictMode>
+);

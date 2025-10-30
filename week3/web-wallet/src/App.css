@@ -1,220 +1,314 @@
-/* Global reset */
-body {
+/* === Base Reset === */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: "Inter", sans-serif;
-  background: #121212;
+  background: radial-gradient(circle at top left, #1a1a1a, #000);
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
-/* Layout */
+/* === Container === */
 .container {
-  max-width: 700px;
-  margin: 60px auto;
-  text-align: center;
-  padding: 0 20px;
+  width: 100%;
+  max-width: 900px;
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 0 25px rgba(255, 200, 50, 0.1);
 }
 
-/* Title */
+/* === Title === */
 .title {
   font-size: 2.4rem;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, #ff8c00, #ffcc00);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #ffb300, #ffd54f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Mnemonic box */
-.mnemonic {
-  background: #cbc099;
-  padding: 15px 20px;
-  border-radius: 10px;
+/* === Network Switch === */
+.network-switch {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
   margin-bottom: 25px;
-  line-height: 1.6;
-  word-wrap: break-word;
 }
 
-/* Controls */
+.network-switch button {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  color: #ccc;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.network-switch button.active {
+  background: linear-gradient(135deg, #ff8c00, #ffcc00);
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 200, 50, 0.3);
+}
+
+.network-switch button:hover {
+  transform: translateY(-2px);
+}
+
+/* === Buttons === */
+button {
+  background: linear-gradient(90deg, #ff8c00, #ffcc00);
+  color: #000;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+button.fetch {
+  background: linear-gradient(90deg, #00c853, #00e676);
+  color: #fff;
+}
+
+button.small-btn {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* === Seed Phrase Display === */
+.seed-container {
+  background: #151515;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.note {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.seed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.seed-box-word {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #eee;
+}
+
+.seed-box-word span {
+  color: #ffcc00;
+  margin-right: 6px;
+}
+
+.blurred {
+  filter: blur(6px);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* === Controls === */
 .controls {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 25px;
   flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px 0;
 }
 
 .controls input {
   width: 70px;
   padding: 8px;
-  border: 1px solid #555;
   border-radius: 6px;
-  background: #1f1f1f;
+  border: 1px solid #444;
+  background: #111;
   color: #fff;
   text-align: center;
 }
 
-/* Buttons */
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-button.create {
-  background: linear-gradient(135deg, #ff8c00, #ffcc00);
-  color: #000;
-  font-size: 1.2rem;
-  padding: 14px 30px;
-}
-
-button.fetch {
-  background: #00c853;
-  color: #fff;
-}
-
-/* Account cards */
+/* === Account Cards === */
 .accounts {
   display: grid;
-  gap: 15px;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  background: #1e1e1e;
+  background: #181818;
+  border: 1px solid #333;
   border-radius: 12px;
-  padding: 15px 20px;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
 
 .card:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
 }
 
-/* Responsive design */
-@media (max-width: 500px) {
-  .controls {
+.card h3 {
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.address {
+  font-family: monospace;
+  color: #ddd;
+  word-break: break-all;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  .container {
+    padding: 20px;
+  }
+  .network-switch {
     flex-direction: column;
-  }
-
-  button {
-    width: 100%;
+    gap: 10px;
   }
 }
-
-
-.container {
-  padding: 30px;
-  font-family: "Inter", sans-serif;
-  text-align: center;
-  color: #222;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.title {
-  font-size: 2.2rem;
-  margin-bottom: 25px;
-}
-
-.create,
-.proceed,
-button {
-  background: linear-gradient(90deg, #ff7b00, #ff9b00);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-}
-button:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
+/* ========== Seed Phrase Section ========== */
 .seed-container {
-  background: #6a6154;
-  border: 1px solid #cd8b28;
-  border-radius: 14px;
-  padding: 25px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.seed-box {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.seed-word {
-  background: white;
-  border: 1px solid #ffcf7a;
-  border-radius: 10px;
-  padding: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .note {
-  font-size: 0.9rem;
-  color: #140b0b;
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 20px;
 }
 
-.accounts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+/* Seed grid — 4 boxes per row */
+.seed-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  justify-items: center;
+  margin: 20px auto;
+  max-width: 600px;
 }
 
-.card {
-  background: #fff9f3;
-  border: 1px solid #ffdba5;
-  border-radius: 12px;
-  padding: 15px;
-  width: 260px;
-  text-align: left;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-input {
-  width: 60px;
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.seed-box {
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 100%;
+  max-width: 130px;
   text-align: center;
+  font-weight: 500;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
+.blurred {
+  filter: blur(5px);
+  user-select: none;
+}
+
+.word-index {
+  color: #ffcc00;
+  margin-right: 5px;
+}
+
+/* Toggle + proceed buttons */
+.toggle-seed,
+.proceed {
+  margin-top: 10px;
+  background: #ffcc00;
+  border: none;
+  color: #000;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+.toggle-seed:hover,
+.proceed:hover {
+  background: #ffd84d;
+}
+
+/* Inline mini seed grid */
+.seed-grid-inline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.seed-box-mini {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  width: 100%;
+}
+
+/* Wallet address fix */
+.address-text {
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #ddd;
+}
+
+/* Responsive */
 @media (max-width: 600px) {
-  .seed-box {
+  .seed-grid,
+  .seed-grid-inline {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .card {
-    width: 90%;
   }
 }

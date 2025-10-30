@@ -1,57 +1,95 @@
 import React, { useContext, useState } from "react";
 import { WalletContext } from "./context/WalletContext";
+import { SolanaContext } from "./context/SolanaContext";
 import "./App.css";
 
 function App() {
-  const { mnemonic, accounts, createNewWallet, addAccount, fetchBalances } =
-    useContext(WalletContext);
-  const [accountIndex, setAccountIndex] = useState(1);
+  const eth = useContext(WalletContext);
+  const sol = useContext(SolanaContext);
+
+  const [network, setNetwork] = useState("ethereum");
   const [showSeed, setShowSeed] = useState(false);
+  const [showMnemonic, setShowMnemonic] = useState(false);
+  const [accountIndex, setAccountIndex] = useState(1);
+
+  const active = network === "ethereum" ? eth : sol;
 
   const handleCreateWallet = async () => {
-    await createNewWallet();
+    await active.createNewWallet();
     setShowSeed(true);
   };
 
   return (
     <div className="container">
-      <h1 className="title">
-        <span role="img" aria-label="wallet">
-          🦊
-        </span>{" "}
-        Mini Crypto Wallet
-      </h1>
+      <h1 className="title">🦊 Multi-Network Crypto Wallet</h1>
 
-      {/* ======== STEP 1: Seed Phrase UI ======== */}
-      {showSeed && mnemonic ? (
+      {/* ======== Network Switch ======== */}
+      <div className="network-switch">
+        <button
+          className={network === "ethereum" ? "active" : ""}
+          onClick={() => setNetwork("ethereum")}
+        >
+          Ethereum
+        </button>
+        <button
+          className={network === "solana" ? "active" : ""}
+          onClick={() => setNetwork("solana")}
+        >
+          Solana
+        </button>
+      </div>
+
+      {/* ======== STEP 1: Seed Phrase View ======== */}
+      {showSeed && active.mnemonic ? (
         <div className="seed-container">
           <h2>Your Secret Recovery Phrase</h2>
           <p className="note">
-            🧠 Write these words down in order and keep them safe. Do not share
-            them with anyone — this is the key to your wallet.
+            ⚠️ Write these words down in order and store them securely.
+            Never share them with anyone — losing this means losing access
+            to your wallet forever.
           </p>
-          <div className="seed-box">
-            {mnemonic.split(" ").map((word, index) => (
-              <div key={index} className="seed-word">
-                <span>{index + 1}.</span> {word}
+
+          {/* --- Seed phrase grid display --- */}
+          <div className={`seed-grid ${!showMnemonic ? "blurred" : ""}`}>
+            {active.mnemonic.split(" ").map((word, index) => (
+              <div key={index} className="seed-box">
+                <span className="word-index">{index + 1}.</span> {word}
               </div>
             ))}
           </div>
+
+          <button className="toggle-seed" onClick={() => setShowMnemonic(!showMnemonic)}>
+            {showMnemonic ? "🙈 Hide Seed Phrase" : "👁 Show Seed Phrase"}
+          </button>
+
           <button className="proceed" onClick={() => setShowSeed(false)}>
             ✅ I’ve Saved My Seed Phrase
           </button>
         </div>
-      ) : !mnemonic ? (
+      ) : !active.mnemonic ? (
         // ======== STEP 0: Create Wallet ========
         <button className="create" onClick={handleCreateWallet}>
-          🚀 Create New Wallet
+          🚀 Create New Wallet ({network})
         </button>
       ) : (
         // ======== STEP 2: Wallet Dashboard ========
         <>
-          <p className="mnemonic">
-            <strong>Mnemonic:</strong> {mnemonic}
-          </p>
+          <div className="mnemonic-box">
+            <strong>Seed Phrase:</strong>
+            <div className={`seed-grid-inline ${!showMnemonic ? "blurred" : ""}`}>
+              {active.mnemonic.split(" ").map((word, i) => (
+                <div key={i} className="seed-box-mini">
+                  <span>{i + 1}</span> {word}
+                </div>
+              ))}
+            </div>
+            <button
+              className="small-btn"
+              onClick={() => setShowMnemonic(!showMnemonic)}
+            >
+              {showMnemonic ? "Hide" : "Show"}
+            </button>
+          </div>
 
           <div className="controls">
             <input
@@ -60,25 +98,26 @@ function App() {
               value={accountIndex}
               onChange={(e) => setAccountIndex(Number(e.target.value))}
             />
-            <button onClick={() => addAccount(accountIndex)}>
+            <button onClick={() => active.addAccount(accountIndex)}>
               ➕ Add Account #{accountIndex}
             </button>
-            <button className="fetch" onClick={fetchBalances}>
+            <button className="fetch" onClick={active.fetchBalances}>
               💰 Fetch Balances
             </button>
           </div>
 
           <div className="accounts">
-            {accounts.length > 0 ? (
-              accounts.map((acc, i) => (
+            {active.accounts.length > 0 ? (
+              active.accounts.map((acc, i) => (
                 <div className="card" key={i}>
                   <h3>Account {i}</h3>
                   <p>
-                    <strong>Address:</strong> {acc.address}
+                    <strong>Address:</strong>
+                    <span className="address-text">{acc.address}</span>
                   </p>
                   <p>
                     <strong>Balance:</strong>{" "}
-                    {acc.balance ? `${acc.balance} ETH` : "Not fetched"}
+                    {acc.balance ? `${acc.balance}` : "Not fetched"}
                   </p>
                 </div>
               ))
