@@ -12,3 +12,63 @@ Accounts
         1. Data Storage: Accounts on Solana are used to store data required by programs (Smart contracts) or to maintain state.
         2. Lamports: Accounts hold a balance of Solana's native cryptocurrency, lamports. Lamports are used to pay for transaction fees to rent space that the account occupies on the blockchain.
         3. Programs: On Solana, programs are special accounts that conatain executable code. These accounts are distinct from regular data accounts in that they are desigend to be executed by the blockchain when triggered by a transaction.
+
+
+
+
+Whenever we explore any account in solana we have to worry about only these  four things ->
+
+    1.How much lamports does it have 
+    2.Does it have any data 
+    3.is it executable 
+    4.Owner/Assigned program id 
+      
+
+
+
+Q.What is Rent on Solana and How to Calculate it ? 
+
+#Rent 
+
+   Rent | Rent Exemption amount
+
+   Rent is a mechanism on the solana blockchain that ensures efficient usage of the blockchain's resources.
+   It Requires accounts to maintain balance proportional to the amount of data they store in the network.
+   Accounts that fail to maintain this minimum balacnce will be removed from the ledger to free up storage.
+   You can think of it is a similar to a bank account, for many accounts, the bank will charge you a fee if you do not maintain a minimum balance.
+   if your balance fails below the required minimumm the bank may charge you a fee or close your account. Solana rent is like the minimum balance requirement ensuring that accounts on 
+   the network have enough lamports (a lamport is one one-billion of a SOL to cover network storage costs). if an account's balance fails below the rent-Exemptl
+   threshold, the account may be removed from the network. Rent is refundable if an account is closed (removed form the network), the data is deleted from the chain 
+   and the rent is refunded to the account owner for other defined account.;
+
+
+
+What is the diff between mainnet, devnet and testnet ?
+
+-> mainnet - is a network which is real world network remotely where we have to buy and sell some real sol 
+-> devent - is also a remotely network but it is only for development purpose we can airdrop ourself sol for developing purpose 
+-> testnet - is i local network where we can airdrop sol for testing purpos in our local machine only..
+
+
+
+
+
+Smart contract are backend application deployed on the blockchain. 
+
+
+## steps to creating the Token in Solana ->
+
+                 1. Create a new Cli Wallet -> Solana-keygen new
+                 2. Set the RPC url -> solana config set --url https://api.devnet.solana.com
+                 3. Airdrop yourself some sole -> solana airdrop 1 
+                 4. Check your balance -> solana balance
+                 5. create token mint -> spl-token create-token
+                 6. Verify token mint on chain 
+                   // we have to specify two thing for creating the account after mint 
+                     1.Whose bank account do you want to open
+                     2.What currency do you want to  that your bank account on 
+                 7. Check the supply of the token -> spl-token supply 5D2wThVRdJhEounWv7UhMm49wrzVDfftr6KFWWrX4eBx
+                 8. Create an assocociated token account - spl-token create-account   (mint address of this token)
+                 9. Mint some tokens to yourself
+                 10.Check your balances in the explorer
+                 11.Import the token in Phantom and see the balances
