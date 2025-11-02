@@ -72,3 +72,7 @@ Smart contract are backend application deployed on the blockchain.
                  9. Mint some tokens to yourself
                  10.Check your balances in the explorer
                  11.Import the token in Phantom and see the balances
+
+
+
+
