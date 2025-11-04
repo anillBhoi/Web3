@@ -17,7 +17,7 @@ function App() {
   
 
   return (
-     <ConnectionProvider endpoint={"https://api.devnet.solana.com"}>
+     <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/vX5IVQ9hD5nGx3mewi1RE"}>
             <WalletProvider wallets={[]} autoConnect>
                 <WalletModalProvider>
                   <WalletMultiButton></WalletMultiButton>
@@ -25,7 +25,7 @@ function App() {
                      <div>
                       <p>Hi there</p>
                      </div>
-                     <Airdrop/> 
+                     <Airdrop></Airdrop> 
                 </WalletModalProvider>
             </WalletProvider>
         </ConnectionProvider>
