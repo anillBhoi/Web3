@@ -1,0 +1,34 @@
+System  program -> 
+
+    Solana contains a small handfull of native programs that are part of the validator implementatation
+    and provide various core functionalitites for the network.
+
+    When developing custom programs on solana, you will commonly interact with two native programs, 
+    the System Program and the BPF Loader.
+
+    System program - 
+        By default, all new accounts are owned by the System Program. The System Program performs several key tasks susch as :
+            - new Account Creation: Only the System Program can create new accounts.
+            - Space Allocation : Sets the byte capacity for the data field of each account.
+            - Assign Program Ownership: Once the System Program creates an account. it can reassign the designated program Owner
+                     to a differant program account. This is how custom programs take owenrship of new accounts created by the System Program.
+
+                     On Solana, a wallet is simply an account owned by the system programs. The lamport balance of the wallet it the amount of SOL owned by  the account.
+
+
+
+
+BPF Loader Program -> 
+
+    The BPF Loader is the program designated as the "owner"
+    of all other programs on the network, 
+    excluding Native Programs. It is responsible for deploying, upgrading and executing custom progrms.
+
+
+
+# Authority in Solana programs 
+
+ -> In Solana programs, authorities are entities or accounts that have the right to perform certain
+    actions or make changes within the program.
+
+

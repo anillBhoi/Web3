@@ -1,0 +1,4 @@
+ # What is a PDA ? 
+ -> Program Derived Addresses(PDAs) provide developers on Solana with two main use Cases:
+     1.Deterministic Account Addresses: PDAs provide a mechanism to deterministically derive an address using a combination of optional "seeds" (predefined inputs) and a specific program id.
+     2.Enable Program Signing: The solana runtime enables programs to "sign" for PDAs which are derived from its program Id
