@@ -51,3 +51,29 @@ without a central authority, allowing users to trade assets directly with one an
                        - x is the reserve of Token A.
                        - y is the reserve of Token B.
                        - k is a constant, meaning it does not change as trades are executed.
+
+
+
+ # Slippage -> 
+    slippage refers to the difference between the expected price of a trade 
+    and the actual price at which the trade is executed.
+
+    It Occures due to - 
+      1.Market Volatility
+      2.Order Size
+      3.Market Conditions - During periods of low trading volume or high demand for a specific asset, slippage is more likyly to occur.
+
+
+      Slippage can be positive or negative: 
+         - Positive Slippage: when a trade is executed at a better price than expected.
+         - Negative Slippage : When a trade is executed at a worse price than expected
+
+
+
+
+ # DEX Aggreagator -> 
+      A DEX aggregater is a platform or protocol that sources liquidity from 
+      multiple decentralized exchanges to provide users with the best possible price for their trades.    
+      ex - Jupiter     
+       
+

@@ -1,0 +1,14 @@
+Wallets are tools that allow users to store, manage, and interact with their cryptocurrencies,
+Heres a breakdown of the key concepts;
+
+Types of wallet +-> 
+
+ 1. Hot Wallets: 
+    - These are connected to the internet and are more convenient for frequent transactions,
+      Example - include web wallets (like those on exchanges), mobile wallets, and desktop wallets.
+
+
+ 2. Cold wallets - 
+
+       - These are Offline wallets, making them more secure against hacks.
+       examples include hardware wallets (like ledger or trezor) and paper wallets.     
