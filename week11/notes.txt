@@ -12,3 +12,24 @@ Types of wallet +->
 
        - These are Offline wallets, making them more secure against hacks.
        examples include hardware wallets (like ledger or trezor) and paper wallets.     
+
+
+
+
+# Impermanent Loss 
+
+  ->  Whenever you create a pool/provide liquidity to a pool, you can end up losing money in the long/short term.
+
+  What is Impermanent loss 
+    ->  Impermanent loss refers to a situation where the compensation you recieve from allocating a token in a liquidity pool is 
+        less than what you would have received just holding the asset.
+
+        This happens when a tokens price changes in the market, causing your allocated assets in the liquidity pool to become worth
+        less than their present value in the market.
+
+        Let's say you deposit equal values of ETH and USDC into a liquidity pool:
+         -  1 ETH worth $2000
+         -  2000 USDC
+         -  Total value : $4000
+
+         
