@@ -1,0 +1,36 @@
+Building a Liquid staking token 
+
+  What is staking ? 
+     ->  in general miners apne wallet se nikal kar kahi rakh dena 
+
+     Proof of stake systems use staking as a mechanism for block leader selection.
+
+     the person who stakes a most the person becomes the  block proposal most of the time.
+
+
+     When we do liquid staking we give a solana and they give back another token in return if we give with helius they give back hsol token 
+
+
+Defination of LST -> 
+   
+      An LST, or liquid staking token is a type of token that represents a users staked assets in a proof of stake blockchain.
+      when your stake your cryptocurrency you often cannot access or trade it while it's staked. liquid staking allows you to maintain liquidity while still particiates in the staking process.
+        1. Staking: When you stake your cryptocurrency with a liquid staking provided, you receive an equivalent amount of LSTs in Return. these tokens represents your staked assests.
+
+        2. Liquidity: since LSTs can be traded or used in other decentralized finance(DEFI) applications, you can take 
+           advantages of market opportunities while your original assets remain staked.
+
+        3.Earning reward: while holding LSTs, you still earn staking rewards on the underlying assets, 
+          typically reflected in the value of the LST.    
+
+
+
+// What is Indexer
+
+->  Something that scans every block/txn in the blockchain and you can subscribe to events on it.
+
+     Evnents can be things like 
+         1. Function has been called on a program
+         2. SOL has been transferred to an address
+         3. USDT/USDC/ custom token has been transferred to an address.
+         
