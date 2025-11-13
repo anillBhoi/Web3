@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
+const {Transaction, Keypair, Connection} = require("@solana/web3.js")
+require("dotenv");
+
+const connection = new Connection("")
 
 const { userModel } = require("./models");
-const { Keypair } = require("@solana/web3.js");
-const jwt = require("jsonwebtoken");
+
+
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "123456"
 
@@ -53,7 +57,20 @@ app.post("/api/v1/signin", async(req, res) => {
 }
 })
 
-app.get("/api/v1/txn/sign", (req, res) => {
+app.get("/api/v1/txn/sign", async (req, res) => {
+    const serializedTransaction = req.body.message;
+
+    const tx = Transaction.from(serializedTransaction)
+
+    const keyPair = Keypair.fromSecretKey(bs58.decode(process.env.PRIVATE_KEY));
+
+    tx.sign(keyPair)
+
+    const signature = await connection.sendTransaction(tx)
+    console.log(signature)
+
+    await connection.sendTransaction(tx)
+
     res.json({
         message:"sign up"
     })
