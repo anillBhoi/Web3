@@ -1,33 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import { Transaction, Connection, PublicKey, SystemProgram, LAMPORTS_PER_SOL } from "@solana/web3.js"
+import axios  from "axios"
+
+const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/i2-Fzc1-58xI4PbQnyjRx")
+const fromPubkey = new PublicKey("0x14054957bBc9705bAaEc0E644301d2c216fEcD0e")
 
 function App() {
-  const [count, setCount] = useState(0)
+
+ async function sendSol() {
+     const ix = SystemProgram.transfer({
+      fromPubkey: fromPubkey,
+      toPubkey: new PublicKey
+      ("bwcgCuvf8AufaJ6E2R3QhLGJPeMfL7xZbt3KfHMx3J7"),
+       lamports: 0.001 * LAMPORTS_PER_SOL
+     }) 
+     const tx = new Transaction().add(ix);
+
+     const { blockhash } = await connection.getLatestBlockhash();
+     tx.recentBlockhash = blockhash;
+     tx.feePayer = fromPubkey
+
+     // convert the transasction into a bunch of bytes
+     const serializedTx = tx.serialize({
+      requireAllSignatures : false,
+      verifySignatures : false
+     });
+
+     console.log(serializedTx);
+
+    await axios.post("/api/v1/txn/sign", {
+      message: serializedTx,
+      retry : false
+     })
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <input type='text' placeholder='Amount'></input>
+       <input type='text' placeholder='Address'></input>
+       <button onClick={sendSol} >Submit</button>
+       
     </>
   )
 }
