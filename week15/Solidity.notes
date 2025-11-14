@@ -1,0 +1,110 @@
+# What is Solidity ? 
+ 
+ Solidity is a high-level, statically-typed programming language used to write smart contracts for Etherium
+ and other blockchain platforms that are compatible with the Etherium Virtual machine (EVM). These smart contracts are self-executing contracts with the terms 
+ of the agreement directly written into code.
+
+
+
+#ABIs 
+  In Etherium, an ABI(application Binary interface) is a standardized way for interacting with smart contracts. it defines how data should be encoded and 
+  decoded when being sent to and from a contract on the Etherium blockchain.
+
+
+
+Solidity Version
+  - The version statement at the top of a 
+  Solidity contract specifies the version of the solididy 
+  compiler that should be used to compile the contract.
+
+
+  ex - 
+
+  pragma solidity ^0.8.0;
+
+  contract Sum {
+    function sum(uint a, uint b) public pur
+        return (a+b, a);
+  }
+
+
+
+# Variables -> 
+      In Solidity, variables are used to store data within a contract. They can 
+      hold different types of values and are fundamental to writing smart contracts.
+
+      for example - for a Decentralized Uber app, 
+                    You would store things like 
+
+                    1.Rides
+                    2.Users
+                    3.Locations
+                    4.Payments
+
+
+     Types of Variables 
+
+     1.Unsigend Numbers 
+         a.uint8 = small Numbers  //here u is for unsigned means the number is not negative 
+         b.uint16 = 16 bit Numbers
+         c.uint255 = 256 bit number(uint)    
+
+
+         ex - 
+
+          contract Sum {
+            unit8 gender;
+            unit calls;
+            unit bigNumber = 100000;
+          }           
+
+
+      2.Signed Numbers 
+
+             a.int
+             b.int32
+
+     3.Booleans
+        1.true
+        2.false
+
+     4.Addresses 
+
+         - address store an etherium address              
+
+
+     5.Strings    
+
+
+
+# Constructor 
+
+      A Constructor in Solidity is a special function that is executed only once during the 
+      deployment of the contract. Its primarly purpose is to initialize the contracts state variables and set up any required 
+      logic when the contract is deployed to the Etherium blockchain.
+
+
+      ex - 
+
+      pragma solidity ^0.8.0;
+
+      contract Calculator {
+        uint256 currentValue;
+
+        constructor(uint256 _initialValue) {
+              currentValue = _initialValue;
+        }
+      }
+
+#Two types of functions:
+
+  - State-changing functions: Functions that modify state variables, interact with other 
+    contracts, or send/recieve Ether require a transaction and are considerd "non-view" functions.
+   
+  - view  functions : 
+
+# View 
+
+   In Solidity, the view keyword indicates that the function does not modify the state of the blockchain.
+   It is a type of function modifier that tells the Etherium virtual machine (EVM) that the function is read-only ad will
+   not alter any operations that would require a transaction.

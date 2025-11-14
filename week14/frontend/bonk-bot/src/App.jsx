@@ -4,7 +4,7 @@ import { Transaction, Connection, PublicKey, SystemProgram, LAMPORTS_PER_SOL } f
 import axios  from "axios"
 
 const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/i2-Fzc1-58xI4PbQnyjRx")
-const fromPubkey = new PublicKey("0x14054957bBc9705bAaEc0E644301d2c216fEcD0e")
+const fromPubkey = new PublicKey("EGKmJNpWB3WD6CApEeAXjGvxT6HpxoBKA58u9WtbctzR")
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
 
      console.log(serializedTx);
 
-    await axios.post("/api/v1/txn/sign", {
+    await axios.post("http://localhost:3000/api/v1/txn/sign", {
       message: serializedTx,
       retry : false
      })
