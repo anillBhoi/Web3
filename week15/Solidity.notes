@@ -108,3 +108,48 @@ Solidity Version
    In Solidity, the view keyword indicates that the function does not modify the state of the blockchain.
    It is a type of function modifier that tells the Etherium virtual machine (EVM) that the function is read-only ad will
    not alter any operations that would require a transaction.
+
+
+# Mapping 
+
+   In Solidity, a mapping is a data structure that allows you to store and look up key-value pairs.
+   It's similar to a hash table or dictionary in other programming languages.
+
+
+   ex- 
+
+       1.create mapping -
+          mapping(address => string) public names;
+
+       2.Insert into a mapping -
+          names[msg.sender] = _name;
+
+       3.Get from a mapping 
+           names[_address];   
+             
+
+
+ #Assignment ->
+
+     Q. Create a user contract where users can come and sign up   
+
+
+     -------> 
+
+     pragma solidity ^0.8.0;
+
+     contract NameRegistry {
+
+      mapping(address => string) public names;
+
+      function setName(string memory _name) public {
+        names[msg.sender] = _name;
+      }
+
+      function getName(address _addres) public view returns (string memory) {
+        return names[_address];
+      }
+     }         
+
+
+          
