@@ -153,3 +153,125 @@ Solidity Version
 
 
           
+
+
+# Arrays 
+
+  There are two types of arrays in Solidity 
+
+        1.Fixed-size arrays:  Arrays where the size is defined when the array is created, and it cannot be changed afterward.
+
+        example - 
+         uint[3] public numbers;
+
+        2.Dynamic Arrays : Arrays where the size can change dynamically during execution(i.e, you can add or remove elements).
+
+        example -
+            uint[] public numbers;
+
+
+
+# Struct 
+
+    In solidity, a struct is a custom data type that allows you to group multiple 
+    variables (of different types) together into a single unit.
+
+    example - 
+
+    struct Person {
+      string name;
+      uint age;
+      address add;
+    }
+    Person public person;
+    
+     function setPerson(string memory _name, uint _age, address _add) public {
+      person.name = _name;
+      person.age = _age;
+      person.add = _add;
+     }
+
+
+
+# Assingment 2 - create a personsContract 
+
+--> 
+
+   contract PersonContract {
+
+    struct Person {
+        string name;
+        uint age; 
+        address addr;
+    }
+
+    mapping(address => Person) public persons;
+
+    function setPerson(string memory _name, uint _age) public {
+      persons[msg.seder] = Person({
+        name; _name,
+        age: _age,
+        addr: msg.sender
+      });
+    }
+
+    function getPerson() public view returns(string memory, uint, address){
+       Person memory person = persons[msg.sender];
+       return (person.name, person.age, person.addr);
+    }
+   }
+
+
+
+
+# Memory VS Stack VS Storage 
+
+
+      In Solidity, Memory, Stack, and Storage are three distinct locations where data can be stored.
+      Each has its own characteristics, use cases, and costs.
+
+
+      Storage - 
+
+           Stoage refers to the presistent data that is saved on the blockchain. it is used for state 
+           variables that you declare at the contract level.
+           Data stored in storage is written to the blockchain and remains there permanently, 
+           accross function calls and transactions, untill it is explicitly modified.  
+
+           Writing to storage is costly in terms of gas 
+           because it requires changes to the blockchain state, which involves network 
+           consensus and storage allocation on the blockchain.
+
+
+
+       Memory - 
+
+          Memory refers to temporary data storage 
+          that only exists during the execution of a function.
+          it is cheaper than storage because it is not stored on the blockchain and is only 
+          kept in the node's memory while the function is executing. Once the function finishes 
+          execution, the data is discarded.    
+
+
+          Temporary: Data in memory is erased once the function execution ends.
+                     function execution ends. 
+
+           Cheaper than storage: Writing to memory is significantly cheaper in terms of gas costs 
+           compared to storage because it does not involve writing to the blockchain.
+
+           Not persistent: Data in memory is not stored permanently and cannot be 
+           accessed outside the function that created it.
+
+           Used for function Arguments/Local Variables: 
+           When passing large structures or arrays into functions, they are often stored 
+           in memory for cheaper gas consumption.  
+
+           example - 
+
+           contract StringExample  {
+              
+              function addStrings(string memory a, string memory b ) public pure returns (string memory) {
+                string memory result = string(abi.encodedPacked(a,b));
+                return result;
+              }
+           }           
