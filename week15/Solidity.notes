@@ -372,6 +372,27 @@ Solidity Version
       const web3 = new web3("https://localhost:8545");
 
       // Contract ABI and address 
+      const contractAddress = "OxYourContractAddress";
+      const abi = [
+
+      ]
+
+      // create a contract instance
+      const contract = new web3.eth.Contract(abi, contractAddress);
+
+      // Listen for the Transfer event 
+      contract.events.Transfer({
+        filter: {
+          from: "0xsenderAddress" }, // optional filtering
+          fromBlock : 0
+      }, (error, event) => {
+         
+         if(error ){
+          console.error(error);
+         }else{
+          console.log(`Transfer from ${event.returnValues.from} to ${event.returnValue.to} of value ${event.returnValues.value} `);
+         }
+      })
 
      
 
