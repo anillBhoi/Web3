@@ -275,3 +275,105 @@ Solidity Version
                 return result;
               }
            }           
+
+
+        Stack - 
+
+            The Stack in Solidity is a limited, low-level data structure used to store small, temporary values that are used 
+            during the execution of a function. it is a akin to a "call stack" in other programming languages. 
+            When you call a function, the EVM pushes temporary values (such as function arguments and local variables ) onto the stack.
+
+
+
+
+   # Modifiers -> 
+
+       In Solidity, Modifiers are a powerfull feature that allows you to modify 
+       the behavior of functions in a reusable and declarative way.They are used to add 
+       additional checks or functionality to a function or group of functions, before or after 
+       the main logic is executed.          
+
+
+
+       pragma solidity ^0.8.0;
+
+       contract Example {
+         address public owner;
+
+         constructor() {
+          owner = msg.sender;   // set the deployer as the owner
+         }
+
+         modifier onlyOwner() {
+          require(msg.sender == owner, "You are not the owner");
+         }
+
+         // function that only the owner can call 
+
+         function setOwner(address newOwner) public onlyOwner {
+          owner = newOwner;
+         }
+
+         function sum(uint a, uint b) public view onlyOwner returns (uint) {
+          return a + b;
+         }
+
+       }
+
+
+
+
+  # Pure functions 
+
+
+        In Solidity, Pure functions are functions that do not read from or modify the blockchain state.
+        They only rely on their input paramertere to perform calculations or operations and return a result.
+        Importantly, Pure functions do not intercat with any state variables or external contracts.     
+
+        example - 
+
+           function sumAndmul(uint a, uint b)  public pure returns (uint, uint) {
+            return (a + bm a *b);
+           }
+
+
+          #Events 
+
+            In Etherium, Events are a mechanism that allows smart contracts to log information on the blockchain, which can then be accessede by external consumers (e.g. front-end applications, other contracts, or off-chaian services like oracles).
+            Events enable smart contracts to emit logs that can be used for debugging, indexing, or 
+            triggring external actions based on contract activity.
+
+
+            Example -> 
+            pragma solidity ^0.8.0;
+
+            contract EventExample {
+              
+
+                // Declare the event with txn parameters : an address and a uint 
+                event Transfer(address indexed from, address indexed to, uint256 value);  // here indexed cam be used to search all txns from a specific user later
+
+                // Aa funtion that emits the Transfer event
+
+                function transfer(address to, uint256 value) public {
+
+                  // Emitting the event with the specified parameters 
+                   emit Transfer(msg.sender, to, value);
+                }
+            } 
+
+
+
+       Example -> Get all transactions from a specific address
+
+       (using express as backend )
+
+      const web3 = require('web3');
+      const web3 = new web3("https://localhost:8545");
+
+      // Contract ABI and address 
+
+     
+
+
+                
