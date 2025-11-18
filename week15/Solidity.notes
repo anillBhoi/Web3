@@ -397,4 +397,41 @@ Solidity Version
      
 
 
-                
+
+#  Part 3 
+
+   # CCI (Cross contract invocation)
+
+           -- CCI is a feature where two independent contracts are calls each other when the user1 calls via any one contract 
+
+                ex - user1 -> contract2 -> contract1 (functions like add())
+
+                here user can use or call add function which is in contract1 via contract 2 indirectly. 
+
+
+                  defination ->
+                     A cross-contract calls refers to a scenario where one smart contract interacts with 
+                     another contract invoking its functions.
+
+                     This is a fundamental concept in blockchain programming, 
+                     enabling modular, reusable, and composable systems.
+
+
+
+                     Before we can call a contract, we need to define the 
+                     struture of the contract in an interface.
+
+
+                     # Interfaces 
+                        -> An interfaces in Solidity is a way to define a contract's external functions 
+                        without providing their implementation.
+
+
+
+                             ---> Properties of Interfaces 
+
+                                     1. Functions declartions only:
+                                          a. Interfaces only allow function declarations without implementation.
+                                          b. functions must be external.
+
+                                     2. No State variables        
