@@ -323,8 +323,6 @@ Solidity Version
 
 
 
-  # Pure functions 
-
 
         In Solidity, Pure functions are functions that do not read from or modify the blockchain state.
         They only rely on their input paramertere to perform calculations or operations and return a result.
@@ -434,4 +432,15 @@ Solidity Version
                                           a. Interfaces only allow function declarations without implementation.
                                           b. functions must be external.
 
-                                     2. No State variables        
+                                     2. No State variables or contructors:
+                                          a.Interfaces can inherit only from other interfacese.
+                                     3.No inheritance from other contracts:
+                                           a.Interfaces can inherit only from other interfaces.
+                                     4. Interactions with other contracts:
+                                          a.Interfaces are commonly used to interact with already 
+                                            deployed contracts, enabling modularity and upgradability.           
+
+
+
+
+
