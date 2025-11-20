@@ -438,9 +438,103 @@ Solidity Version
                                            a.Interfaces can inherit only from other interfaces.
                                      4. Interactions with other contracts:
                                           a.Interfaces are commonly used to interact with already 
-                                            deployed contracts, enabling modularity and upgradability.           
+                                            deployed contracts, enabling modularity and upgradability.  
+
+
+
+                         ex -> 
+
+                            // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+contract Storage {
+   uint public num;
+
+   constructor(uint _num) {
+    num = _num;
+   }
+
+   function getNum() public view returns (uint) {
+    return num;
+   }
+
+   function add() public {
+    num = num +1;
+   }
+}  
 
 
 
 
+
+
+
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+
+interface IStorage {
+   function getNum() external view returns (uint);
+   function add() external;
+   
+}
+
+contract Contract2{
+
+   constructor() {
+
+   }
+
+   function proxyAdd() public {
+      IStorage(0x424ee859a5f5d92c9df16e2be6fd9e2a4539cbbd).add();
+   }
+
+   function proxyGet() public view returns (uint) {
+      uint value = IStorage(0x424ee859a5f5d92c9df16e2be6fd9e2a4539cbbd).getNum();
+      return value;
+   }
+}
+
+
+
+
+
+# Payable -> 
+
+   In Solidity Payable refers to function or addresses that are capable of receiving Ether (ETH) transfers. 
+   Solidity is Ethereum's programming language, and Ether is the native cryptocurrency of the Ethereum network. The 
+   payable keyword is used to indicate that a function or an address can accept Ether sent to it.
+
+
+
+ex - 
+    // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+contract  Money {
+    uint public  totalMoney; 
+
+    function deposit() public payable {
+         totalMoney += msg.value;
+    }
+
+
+    function withdraw(address payable ad) public {
+          payable(ad).transfer(totalMoney);
+          totalMoney = 0; 
+          
+    }
+}
+
+ 
+
+# Create an Will Contract 
+   
+      1.Every user will deploy their own Will Contract.
+      2.When initialized, set the owner to be the person initializing
+      3.The Owner can define a recipient in the constructor
+      4.Owner should be allowed to change the recipient
+      5.Owner should be allowed to interact with the contract via a ping function
+      6.If ping hasnt been called for > 1 year, the recipeint should be allowed to call a drain function.
 
