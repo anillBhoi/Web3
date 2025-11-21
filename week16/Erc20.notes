@@ -1,0 +1,44 @@
+What is a token ? 
+
+
+ 1.It is a type of cryptocurrency
+ 2.It has an owner/issuer/minter
+ 3.There is mapping of which address owns how much of the addresss
+
+ 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract AnilCoin {
+    
+    address public owner;
+    uint public totolSupply;
+    mapping (address => uint) balances;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // mint
+    function mint(uint amount )public {
+        require(owner == msg.sender);
+        balances[owner] += amount;
+
+    }
+
+      // mintTo
+    function mintTo(uint amount, address to ) public {
+        require(owner == msg.sender);
+        balances[owner] += amount;
+        totalSupply += amount;
+    }
+
+    //transfer
+
+    function transfer(uint amount, address to) public {
+        uint existingBalance = balances[msg.sender];
+        require(existingBalance >= amount);
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+    }
+}
