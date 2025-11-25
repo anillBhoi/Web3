@@ -1,0 +1,8 @@
+Cargo in rust is a enviornment is like node npm or pip in python 
+
+
+What is Rust ? 
+
+   Rust is a general-purpose programming language that emphasizes performance, type safety, and concurrency.
+    It was designed to provide memory safety without a traditional garbage collector, using a unique ownership model and
+    a borrow checker to ensure that references do not outlive the data they refer to.
