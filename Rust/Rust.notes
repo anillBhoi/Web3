@@ -6,3 +6,31 @@ What is Rust ?
    Rust is a general-purpose programming language that emphasizes performance, type safety, and concurrency.
     It was designed to provide memory safety without a traditional garbage collector, using a unique ownership model and
     a borrow checker to ensure that references do not outlive the data they refer to.
+
+
+
+    Rust is using Rust which means that all the standard compiler libraries are written in rust; there is a bit of use of the C programming language but most of it is Rust. The big project of Rust is "servo",  It is a project to write out the totally parallel layout engine like Gecko in Firefox or WebKit in Safari.
+
+Servo built the layout engine, something to render HTML from bottom to top.
+
+
+
+
+
+Functions in Rust
+Functions are the block of reusable code that can perform similar related actions. You have already seen one of the most important functions in the language: the main function, which is the entry point of many programs. You’ve also seen the “fn” keyword, which allows you to declare new functions. Rust code uses snake case as the conventional style for function and variable names. In snake case, all letters are lowercase and underscore separate words.
+
+Syntax:
+
+fn functionname(arguments){
+  code
+}
+
+
+
+Here,
+
+To create a function we need to use the fn keyword.
+The function name is written after the fn keyword.
+Arguments are passed after function name inside parenthesis.
+You can write function code in function block.
