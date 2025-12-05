@@ -67,7 +67,23 @@
     
     
 
-    
+const names: string[] = [];
+
+names.push("anil");
+
+
+// ReadOnly keyword can prevent arrays from being changed.
+const namess:readonly string[] = ["anil"];
+
+  // namess.push("jack");  Error : property 'push' does not exist on type 'readonly' string[].
+  // try removing the readonly modifier and see if it works ?
+
+
+
+  
+
+
+
 
 
 
