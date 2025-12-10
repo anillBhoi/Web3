@@ -209,7 +209,7 @@ Solidity Version
 
     function setPerson(string memory _name, uint _age) public {
       persons[msg.seder] = Person({
-        name; _name,
+        name: _name,
         age: _age,
         addr: msg.sender
       });

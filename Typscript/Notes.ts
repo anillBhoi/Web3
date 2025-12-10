@@ -80,10 +80,55 @@ const namess:readonly string[] = ["anil"];
 
 
 
+  // # Tuple 
+        // tuple is typed array with a pre-defined length and types for each index.
+        // Tuples are great because they allow each element in the array to be a known type of value.
+        // To define a tuple, specify the type of each element in the array:
+
+
   
+        let ourTuple :[number, boolean, string];
+
+        // initialize correctly
+
+         ourTuple = [5,false, 'hey there ']; // if we initialized it incorrectly which throws an error 
+
+
+
+//# TypeScript Objects 
+
+     const car: {type:string, model:string, year:number} = {
+        type: "Toyota", 
+        model: "Corolla", 
+        year: 2009
+     };
 
 
 
 
+     // # Enums 
+
+        // An Enum is a special "class" that represents a group of constants (unchangeable variables).
+        // Enum come in two flavors string and numeric.
+
+        // Numeric Enums - Default 
+           // By default, enums will initialize the first value to 0 and add 1 to each additional value:
 
 
+
+     
+           
+ // # Generics 
+ 
+         // Generics allow creating 'type variables' which can be used to create classes, functions & type 
+         // aliases that don't need to explicitly define the types that they use.
+
+         // Generics make it easier to write reusable code.
+
+         // functions Generics with functions help create more general functions that accurately represent input and return types.
+
+
+                function createPair<S,T>(v1:S, v2:T):[S,T] {
+                    return [v1, v2];
+                }
+                console.log(createPair<string,number>('hello', 42));
