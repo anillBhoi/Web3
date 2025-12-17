@@ -40,4 +40,16 @@ fn main() {
     let greeting = String::from("Good morning (:");
     println!("{}", greeting);
 
+    
+    // Arrays 
+    let arr: [i32; 5] = [1,2,3,4,5];
+    println!("{}", arr.len());
+
+
+    // Vectors 
+    let mut xs = vec![1,2,3];
+    println!("{}", xs.len());
+    xs.push(4);
+    println!("{}", xs.len());
+
 }
