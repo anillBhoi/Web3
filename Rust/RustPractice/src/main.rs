@@ -67,8 +67,71 @@ fn main() {
 
     // Looop 
     let str = String::from("Anil Bhoi");
-    println!("first name {}", get_first_name(str))
+    println!("first name {}", get_first_name(str));
 
+
+
+    //# Ownership and heap Variables 
+
+       // Ownership Rules -> 
+           // First, let's take a look at the ownership rules. Kepp these rules in mind as we through the examples that illustrate them: 
+             // - Each value in Rust has a owner.
+             // - There can only be one owner at a time.
+             // - When the owner goes out of scope, the value will be dropped.
+
+
+                 let str1 = String::from("anil");
+                 let len = get_length(str1);
+                 println!("{}", len);
+               
+               
+                //  print!("{}", str1);  // this line gives error like this value borrowed here after move.
+                       // here the code fails becos of ownership of str1 is moved to the get_length function. Once the functions scope ends, the str1 variable is no longer valid.
+
+                 // Fix #1 - Transferring back ownership 
+                 let str2 = String:: from("Anil");
+                 let (str2, len) = get_length2(str2);
+                 println!("{} : {}", str2, len);
+
+                 // Fix #2 -  Borrowing and references --  Rather than transferring ownership to a function, you can let the function borrow the variable.
+                 
+                 let str3 = String::from("Anil");
+                 let len3 = get_length3(&str3);  // When you pass a variable by reference, the variable is still owned by the first function. It is only borrowed by the get_length3 function.
+                 println!("{} {}", str3, len3);
+
+                 // Rules of borrowing - 
+                     // 1. You can only have one immutable reference. If there is an immutable reference, there cant be other immutable or mutable references
+                     // 2. You can have multiple immutable references
+                  
+
+
+
+             // # Quiz  --> 
+          
+                 // 1. will this code works  ? 
+                 let str4 = String::from("AnilB");
+                 let ref1 = &str4;
+                 let ref2 = &str4;
+
+                 println!("{} {}", ref1, ref2);   // yes this code works correctly.
+
+                    
+
+
+                 // 2. Will this code compile -
+                  let mut str5 = String::from("Anna");
+                  let ref3 = &mut str5;
+                  //let ref4 = &str5;    // // this code gives error like cannot borrow 'str5' as immutable becos it is also borrowed as mutable
+
+ 
+                 // println!("{} {}", ref3, ref4); 
+                  //3. will this code compile 
+
+                  let mut str6 = String:: from("Hello");  
+                  let ref5 = &mut str6;
+                  ref5.push_str(" world");
+                  let ref6 = &str6;
+                  println!("{}", ref6);  // yes this code works correctly.
 }
 
 pub fn is_even(x: i32) -> bool {
@@ -84,4 +147,19 @@ pub fn get_first_name(str: String) -> String {
     first_name.push(c);
 }
 return first_name;
+}
+
+fn get_length(str1: String) -> usize{
+    return str1.len();
+}
+
+
+fn get_length2(str2: String) -> (String, usize) {
+    let len = str2.len();
+    return (str2, len);
+}
+
+fn get_length3(str3: &String) -> usize {
+    let len = str3.len();
+    return len;
 }
