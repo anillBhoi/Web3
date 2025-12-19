@@ -159,9 +159,29 @@ fn main() {
                     // importants points 
                       // 1. The struct itself must be marked mut
                       //2.Individual fields don't carry mutability - the binding does
-                      // 3. Ownership transfer applies to the entire struct.
+                      // 3. Ownership transfer applies to the entire struct.  // till 249 line 
 
 
+
+                      // # Enums -> 
+                        
+                          // A value that can be exactly one of several defined possiblities.
+                          // Enums in rust are similar to enums in Typescript. They allow you to define a type by enumerating its possible variants.
+
+                          let dir = Direction::North;
+
+                          let msg = Message::Write(String::from("Hello"));
+                          // only valid data for that variant can exist.
+
+
+                    // # Pattern Matching -> 
+
+                         // Take a value, look at its shape, and run the correct logic - safely and completely.
+
+                         // Instead of guessing with if/else, Rust forces certainty. 
+
+                   
+                     
 }         
 
 pub fn is_even(x: i32) -> bool {
@@ -239,3 +259,45 @@ struct User {
           // Q. Why does Rust restrict methods to impl blocks?
             // -> Rust enforces a strict seperation between data and behavior to maintain owership and mutability guarantees. 
             // By requiring methods to be defined inside impl blocks, Rust ensures that all state transitions are explicit, auditable and checked at compile time.
+
+
+
+      // # Enums  -> basic example 
+         enum Direction {
+            North, 
+            South, 
+            East, 
+            West,
+         }      
+
+       // This means -> 
+          // - A Direction value can be only one of these four
+          // - nothing else is allowed 
+
+      // Enums with data 
+           // Rust enums are not just lables.
+           // Each varient can carry different data.
+
+           enum Message {
+            Quit,
+            Move {x: i32, y: i32},
+            Write(String),
+           } 
+
+
+          enum Action {
+            Deposit(u64),
+            Withdraw(u64),
+          } 
+
+          let action = Action::Deposit(100);
+
+
+          match action {
+    Action::Deposit(amount) => {
+        println!("Deposit {}", amount);
+    }
+    Action::Withdraw(amount) => {
+        println!("Withdraw {}", amount);
+    }
+}
