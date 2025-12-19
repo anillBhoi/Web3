@@ -132,7 +132,37 @@ fn main() {
                   ref5.push_str(" world");
                   let ref6 = &str6;
                   println!("{}", ref6);  // yes this code works correctly.
-}
+
+
+                  // Structs 
+
+                        // Structs in rust let you structure data together. similar to objects in javascript.
+
+                        // In Rust a struct is a data modeling primitive used to group logically related data into a single, strongly typed unit.
+                        // From a system design standpoint, structs are the backbone for representing state, configuration, and domain entities.
+                  let user1 = User {
+                     id: 1,
+                     balance: 1_000,
+                     is_active: true,
+                  };
+
+                  println!("User 1 username: {:?}", user1.username);
+
+
+                  let mut user = User {
+                           id: 1,
+                           balance: 1_000,
+                           is_active: true,
+                    };
+
+                    user.balance += 500;
+                    // importants points 
+                      // 1. The struct itself must be marked mut
+                      //2.Individual fields don't carry mutability - the binding does
+                      // 3. Ownership transfer applies to the entire struct.
+
+
+}         
 
 pub fn is_even(x: i32) -> bool {
     return x % 2 == 0;
@@ -163,3 +193,49 @@ fn get_length3(str3: &String) -> usize {
     let len = str3.len();
     return len;
 }
+
+
+// Structs 
+struct User {
+      id: u64,
+    balance: u64,
+    is_active: bool,
+}
+
+// # Implementing structs (impl blocks)
+   
+   // Purpose of impl 
+      // An impl block attaches behavior to a struct, forming an abstraction boundary similar to methods in OOP - but without inheritance or runtime cost.
+          // in simple terms -> A strcut is just data. and An impl block is where you write functions that work on that data.
+          // Rust intentionally separates: 
+             // 1.What data look like -> struct
+             // 2. What data can do -> impl
+
+            //   let mut user = User {
+            //                id: 1,
+            //                balance: 1_000,
+            //                is_active: true,
+            //         };
+
+
+            // this above user is initialized but they dont have any behavior function that belongs to struct.so for defines the fun we use impl 
+      impl User {
+        fn add_balance(&mut self, amount: u64) {
+           self.balance += amount;
+        }
+      }
+
+         //- For User, define a function called add_balance
+         //- This function is allowed to change the user (&mut self)
+         // self -> means this user (this object)
+         //  self.balance -> means this user's balance
+
+         // self explained 
+          // 1. self -> this object
+          // 2. &self -> read-only access
+          // 3. &mut self  -> can change data 
+
+
+          // Q. Why does Rust restrict methods to impl blocks?
+            // -> Rust enforces a strict seperation between data and behavior to maintain owership and mutability guarantees. 
+            // By requiring methods to be defined inside impl blocks, Rust ensures that all state transitions are explicit, auditable and checked at compile time.
